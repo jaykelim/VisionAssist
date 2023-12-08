@@ -6,8 +6,9 @@ from openai import OpenAI
 import base64
 from elevenlabs import generate, play, set_api_key, voices
 
-model_purpose = """You are an advanced AI model integrated into a visual assistance application, designed to aid visually impaired individuals in safely navigating urban environments. Your primary function is to interpret and describe images captured by smart eyewear, providing real-time, actionable insights about the user's surroundings."""
-model_context = """Analyze this image from the perspective of a visually impaired person preparing to navigate an urban environment. Highlight any potential hazards, obstacles, or moving elements, such as vehicles and pedestrians, with a focus on their current activity and position. Provide a clear and detailed description of pedestrian paths, street crossings, and any relevant signage or traffic signals. Emphasize elements critical for safe navigation, using simple and understandable language, and urgently note any immediate dangers or changes in the environment. Ensure the analysis is conciseto allow quick action for the user"""
+model_purpose = """You are an assistant integrated into a visual assistance application, designed to aid visually impaired individuals in safely navigating urban environments. Your primary function is to interpret and describe images captured by smart eyewear, providing real-time, actionable insights about the user's surroundings."""
+model_context = """Analyze the provided image and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
+voices = voices()
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
@@ -53,12 +54,14 @@ set_api_key(os.environ.get("ELEVENLABS_API_KEY"))
 
 caption1 = "Alice, who is visually impaired, approaches a busy urban intersection intent on crossing the street. She senses something unusual across the street but cannot ascertain what it is. Concerned about potential hazards, Alice doesn't want to risk crossing without knowing more about the situation."
 caption2 = "test caption 2"
+caption2 = "test caption 3"
 
 img = image_select(
   label="Select an scenario",
   images=[
     "Images\Image1.png",
-    "Images\image2.jpg"
+    "Images\image2.jpg",
+    "Images\Image3.png"
   ]
 )
 
@@ -66,6 +69,9 @@ if img == "Images\Image1.png":
   st.write(caption1)
 elif img == "Images\image2.jpg":
   st.write(caption2)
+elif img == "Images\Image3.png":
+  st.write(caption2)
+  
 
 
 st.write(str(img))
@@ -77,9 +83,14 @@ if st.button("Analyze Capture"):
     base64_image = encode_image(str(img))
    with st.spinner('Analyzing Capture....'):
     response = fetch_response(base64_image)
+    st.write(response)
    with st.spinner('Generating Audio...'):
-    audio_track = 
+    audio_track = generate(response, voice="X0kRrWRjGxjEntPwxnnQ")
+    st.audio(audio_track)
    st.success("Done!")
 
-st.write(response)
-#t.audio()
+# if st.button("generate audio"):
+#   audio_track = generate("Test audio, happy friday everyone", voice="X0kRrWRjGxjEntPwxnnQ")
+#   st.audio(audio_track)
+
+

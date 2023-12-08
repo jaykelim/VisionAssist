@@ -55,7 +55,6 @@ st.markdown(
     ### Empowering the Visually Impaired Through Technology
     
     In a world where technology advances at a rapid pace, it's essential that these developments are harnessed to improve the lives of all individuals, including the visually impaired. VisionAssist is a groundbreaking application designed to do just that. Integrated with state-of-the-art smart eyewear, this application aims to revolutionize how visually impaired people interact with their surroundings.
-    of what Streamlit can do!
 
 """
 )
