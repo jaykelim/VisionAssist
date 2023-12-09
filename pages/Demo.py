@@ -47,14 +47,13 @@ st.set_page_config(
 
 st.title('VisionAssist 🔭')
 load_dotenv(find_dotenv())
-#print(os.environ.get("OPENAI_API_KEY"))
 
 client = OpenAI()
 set_api_key(os.environ.get("ELEVENLABS_API_KEY"))
 
 caption1 = "Alice, who is visually impaired, approaches a busy urban intersection intent on crossing the street. She senses something unusual across the street but cannot ascertain what it is. Concerned about potential hazards, Alice doesn't want to risk crossing without knowing more about the situation."
-caption2 = "test caption 2"
-caption2 = "test caption 3"
+caption2 = "Sidewalk closed and rerouted"
+caption3 = "Van parked blocking pedestrian crosswalk"
 
 img = image_select(
   label="Select an scenario",
@@ -70,11 +69,9 @@ if img == "Images\Image1.png":
 elif img == "Images\image2.jpg":
   st.write(caption2)
 elif img == "Images\Image3.png":
-  st.write(caption2)
+  st.write(caption3)
   
 
-
-st.write(str(img))
 st.image(img)
 response = ""
 audio_track = ""
@@ -85,7 +82,7 @@ if st.button("Analyze Capture"):
     response = fetch_response(base64_image)
     st.write(response)
    with st.spinner('Generating Audio...'):
-    audio_track = generate(response, voice="X0kRrWRjGxjEntPwxnnQ")
+    audio_track = generate(response, voice="pQSZFJc4cHxMLZP9QiPa")
     st.audio(audio_track)
    st.success("Done!")
 
