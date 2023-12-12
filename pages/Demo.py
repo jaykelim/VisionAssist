@@ -7,7 +7,7 @@ import base64
 from elevenlabs import generate, play, set_api_key, voices
 
 model_purpose = """You are an assistant integrated into a visual assistance application, designed to aid visually impaired individuals in safely navigating urban environments. Your primary function is to interpret and describe images captured by smart eyewear, providing real-time, actionable insights about the user's surroundings."""
-model_context = """Analyze the provided image and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
+model_context = """Analyze the provided image and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be 3 to 4 sentences, easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
 voices = voices()
 
 def encode_image(image_path):
@@ -56,7 +56,7 @@ caption2 = "Sidewalk closed and rerouted"
 caption3 = "Van parked blocking pedestrian crosswalk"
 
 img = image_select(
-  label="Select an scenario",
+  label="Select a scenario",
   images=[
     "Images\Image1.png",
     "Images\image2.jpg",
@@ -82,7 +82,7 @@ if st.button("Analyze Capture"):
     response = fetch_response(base64_image)
     st.write(response)
    with st.spinner('Generating Audio...'):
-    audio_track = generate(response, voice="pQSZFJc4cHxMLZP9QiPa")
+    audio_track = generate(response, voice="gfEFZQFYzUcj9hPpmXbd")
     st.audio(audio_track)
    st.success("Done!")
 

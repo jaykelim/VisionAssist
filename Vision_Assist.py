@@ -9,11 +9,15 @@ st.set_page_config(
     page_icon="🔭",
 )
 
-st.image("Images\logo3.png")
+
+left_co, cent_co, right_co = st.columns(3)
+with cent_co:
+    st.image("Images\logo3.png")
+    st.markdown("""# VisionAssist""")
+
 
 st.markdown(
     """
-    # VisionAssist 🔭 
     ## Navigating the World with AI-Powered Smart Eyewear
     ### Empowering the Visually Impaired Through Technology
     
