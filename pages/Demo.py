@@ -57,7 +57,8 @@ load_dotenv(find_dotenv())
 client = OpenAI()
 set_api_key(os.environ.get("ELEVENLABS_API_KEY"))
 
-caption1 = "Alice, who is visually impaired, approaches a busy urban intersection intent on crossing the street. She senses something unusual across the street but cannot ascertain what it is. Concerned about potential hazards, Alice doesn't want to risk crossing without knowing more about the situation."
+caption = "Alice, who is visually impaired, approaches a busy urban intersection intent on crossing the street. She senses something unusual across the street but cannot ascertain what it is. Concerned about potential hazards, Alice doesn't want to risk crossing without knowing more about the situation."
+caption1 = "Obstruction across the street"
 caption2 = "Sidewalk closed and rerouted"
 caption3 = "Van parked blocking pedestrian crosswalk"
 
