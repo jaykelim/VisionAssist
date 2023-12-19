@@ -5,9 +5,10 @@ from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 import base64
 from elevenlabs import generate, play, set_api_key, voices
+from Footer import footer
 
 model_purpose = """You are an assistant integrated into a visual assistance application, designed to aid visually impaired individuals in safely navigating urban environments. Your primary function is to interpret and describe images captured by smart eyewear, providing real-time, actionable insights about the user's surroundings."""
-model_context = """Analyze the provided image and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be 3 to 4 sentences, easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
+model_context = """The image provided is a pov taken from someone who needs assistance. Analyze and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be 3 to 4 sentences, easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
 voices = voices()
 
 def encode_image(image_path):
@@ -45,7 +46,12 @@ st.set_page_config(
   page_icon="🔭",
 )
 
-st.title('VisionAssist 🔭')
+left_co, cent_co, right_co = st.columns(3)
+with cent_co:
+    st.image("Images\logo3.png")
+    st.markdown("""# VisionAssist""")
+
+
 load_dotenv(find_dotenv())
 
 client = OpenAI()
@@ -91,3 +97,4 @@ if st.button("Analyze Capture"):
 #   st.audio(audio_track)
 
 
+footer()
