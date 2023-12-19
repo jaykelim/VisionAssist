@@ -4,6 +4,7 @@ from streamlit_image_select import image_select
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
 from Footer import footer
+from pathlib import Path
 
 def add_logo(img_path):
     st.markdown(
@@ -28,6 +29,13 @@ def add_logo(img_path):
         unsafe_allow_html=True,
     )
 
+images_folder = Path("Images")
+
+logo = images_folder / "logo3.png"
+
+
+print(logo)
+
 st.set_page_config(
     page_title="Vision Assist",
     page_icon="🔭",
@@ -39,7 +47,7 @@ st.set_page_config(
 
 left_co, cent_co, right_co = st.columns(3)
 with cent_co:
-    st.image("Images\logo3.png")
+    st.image(str(logo))
     st.markdown("""# VisionAssist""")
 
 

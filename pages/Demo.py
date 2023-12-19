@@ -6,10 +6,18 @@ from openai import OpenAI
 import base64
 from elevenlabs import generate, play, set_api_key, voices
 from Footer import footer
+from pathlib import Path
 
 model_purpose = """You are an assistant integrated into a visual assistance application, designed to aid visually impaired individuals in safely navigating urban environments. Your primary function is to interpret and describe images captured by smart eyewear, providing real-time, actionable insights about the user's surroundings."""
 model_context = """The image provided is a pov taken from someone who needs assistance. Analyze and narrate a concise, clear description focusing on elements crucial for a visually impaired person's safe navigation in an urban setting. Emphasize pedestrian paths, any obstacles or hazards, moving elements like vehicles or people, and relevant signage or traffic signals. Your response should be 3 to 4 sentences, easily audible and understandable, using simple language to aid in quick comprehension and decision-making. """
 voices = voices()
+
+images_folder = Path("Images")
+
+logo = images_folder / "logo3.png"
+img1 = images_folder / "Image1.png"
+img2 = images_folder / "Image2.jpg"
+img3 = images_folder / "Image3.png"
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
@@ -48,7 +56,7 @@ st.set_page_config(
 
 left_co, cent_co, right_co = st.columns(3)
 with cent_co:
-    st.image("Images\logo3.png")
+    st.image(str(logo))
     st.markdown("""# VisionAssist""")
 
 
@@ -65,17 +73,17 @@ caption3 = "Van parked blocking pedestrian crosswalk"
 img = image_select(
   label="Select a scenario",
   images=[
-    "Images\Image1.png",
-    "Images\image2.jpg",
-    "Images\Image3.png"
+    str(img1),
+    str(img2),
+    str(img3)
   ]
 )
 
-if img == "Images\Image1.png":
+if img == str(img1):
   st.write(caption1)
-elif img == "Images\image2.jpg":
+elif img == str(img2):
   st.write(caption2)
-elif img == "Images\Image3.png":
+elif img == str(img3):
   st.write(caption3)
   
 
